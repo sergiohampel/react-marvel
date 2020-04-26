@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Search from "../Common/Search/";
 import Card from "./components/Card";
 
+import { getCharacters } from "./services/api/";
+
 const Character = () => {
-  const [characters] = useState([
-    "Iron-Man",
-    "Captain-Marvel",
-    "Black-Panther",
-    "Black-Widow",
-    "Thor",
-  ]);
+  const [characters, setCharacters] = useState([]);
+
+  useEffect(() => {
+    async function loadCharacters() {
+      const data = await getCharacters();
+
+      setCharacters(data.results);
+    }
+
+    loadCharacters();
+  }, []);
 
   return (
     <>
@@ -20,8 +26,8 @@ const Character = () => {
 
       <ul>
         {characters.map((character) => (
-          <li key={character}>
-            <Card name={character} />
+          <li key={character.id}>
+            <Card name={character.name} />
           </li>
         ))}
       </ul>
@@ -31,7 +37,7 @@ const Character = () => {
 
 export default {
   routeProps: {
-    path: "/characters",
+    path: "/",
     component: Character,
     exact: true,
   },
