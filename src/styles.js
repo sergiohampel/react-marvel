@@ -36,6 +36,9 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background-color: #000;
     color: #fff;
+  }
+
+  body, input, button {
     font-family: Roboto, Helvetica, sans-serif;
   }
 

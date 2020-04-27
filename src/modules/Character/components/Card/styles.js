@@ -6,13 +6,13 @@ export const Card = styled.div`
   cursor: pointer;
   height: 300px;
   position: relative;
-  transition: all 0.3s;
+  transition: transform 0.3s;
 
   &:hover {
     transform: scale(1.1);
   }
 
-  > h2 {
+  h2 {
     background-color: rgba(0, 0, 0, 0.8);
     bottom: 0;
     font-family: "RobotoCondensed";

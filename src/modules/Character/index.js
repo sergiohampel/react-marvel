@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import * as S from "./styles";
 
-import Search from "../Common/Search/";
+import Search from "./components/Search";
 import Card from "./components/Card";
 
 import { getCharacters } from "./services/api/";
@@ -29,9 +29,10 @@ const Character = () => {
 
   return (
     <>
-      <S.Title>Marvel Characters</S.Title>
-
-      <Search />
+      <S.Header>
+        <S.Title>Marvel <span>Characters</span></S.Title>
+        <Search />
+      </S.Header>
 
       <S.Characters>
         {characters.map((character) => (
