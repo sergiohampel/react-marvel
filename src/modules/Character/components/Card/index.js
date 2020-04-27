@@ -1,14 +1,15 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 
-const Card = ({ name }) => {
-  let history = useHistory();
+import * as S from "./styles";
 
-  function openDetails(characterName) {
-    history.push(`/characters/${characterName}`);
-  }
-
-  return <h1 onClick={() => openDetails(name)}>{name}</h1>;
+const Card = ({ character }) => {
+  return (
+    <S.Card
+      url={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+    >
+      <h2>{character.name}</h2>
+    </S.Card>
+  );
 };
 
 export default Card;

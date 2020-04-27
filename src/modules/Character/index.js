@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+
+import * as S from "./styles";
 
 import Search from "../Common/Search/";
 import Card from "./components/Card";
@@ -18,19 +21,25 @@ const Character = () => {
     loadCharacters();
   }, []);
 
+  const history = useHistory();
+
+  function openDetails(characterName) {
+    history.push(`/characters/${characterName}`);
+  }
+
   return (
     <>
-      <h1>Character container</h1>
+      <S.Title>Marvel Characters</S.Title>
 
       <Search />
 
-      <ul>
+      <S.Characters>
         {characters.map((character) => (
-          <li key={character.id}>
-            <Card name={character.name} />
+          <li key={character.id} onClick={() => openDetails(character.name)}>
+            <Card character={character} />
           </li>
         ))}
-      </ul>
+      </S.Characters>
     </>
   );
 };
