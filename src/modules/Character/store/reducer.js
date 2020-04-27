@@ -1,14 +1,13 @@
+import createReducer from "../../../store/create-reducer";
+
+import { INCREMENT, DECREMENT } from "./action-types";
+
 const initialState = 0;
 
-const reduce = (state = initialState, action) => {
-  switch (action.type) {
-    case "increment":
-      return state + 1;
-    case "decrement":
-      return state - 1;
-    default:
-      return state;
-  }
-};
+const reduce = createReducer(initialState, {
+  [INCREMENT]: (state, { value }) => state + value,
+
+  [DECREMENT]: (state, { value }) => state - value,
+});
 
 export default reduce;

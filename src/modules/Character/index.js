@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 
 import reducer from "./store/reducer";
 
@@ -14,9 +13,6 @@ import { getCharacters } from "./services/api/";
 const Character = () => {
   const [characters, setCharacters] = useState([]);
 
-  const todo = useSelector((state) => state.characters);
-  const dispath = useDispatch();
-
   useEffect(() => {
     async function loadCharacters() {
       const data = await getCharacters();
@@ -27,18 +23,17 @@ const Character = () => {
     loadCharacters();
   }, []);
 
-  // const history = useHistory();
+  const history = useHistory();
 
   function openDetails(characterName) {
-    dispath({ type: "increment" });
-    // history.push(`/characters/${characterName}`);
+    history.push(`/characters/${characterName}`);
   }
 
   return (
     <>
       <S.Header>
         <S.Title>
-          Marvel <span>Characters - {todo}</span>
+          Marvel <span>Characters</span>
         </S.Title>
         <Search />
       </S.Header>
