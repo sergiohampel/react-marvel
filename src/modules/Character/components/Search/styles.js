@@ -1,27 +1,31 @@
 import styled from "styled-components";
 
+export const SearchIcon = styled.div`
+  margin: 30px 0 0;
+  position: relative;
+
+  svg {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 2rem;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 15px;
+  }
+`;
+
 export const Input = styled.input`
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: transparent;
   border: 0;
+  border-bottom: 4px solid rgba(255, 255, 255, 0.1);
   color: #fff;
   font-size: 2.4rem;
   height: 50px;
-  margin: 30px 0 0;
-  padding: 20px;
-  transition: background-color 0.3s;
+  padding: 0 20px 0 35px;
+  transition: border-color 0.3s;
   width: 100%;
 
   &:focus {
-    background-color: rgba(255, 255, 255, 1);
-    color: #000;
-  }
-
-  @media screen and (min-width: 768px) {
-    margin: 0;
-    width: auto;
-  }
-
-  @media screen and (min-width: 960px) {
-    width: 400px;
+    border-color: rgba(255, 255, 255, 1);
   }
 `;

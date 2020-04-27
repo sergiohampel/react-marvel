@@ -42,6 +42,15 @@ export const GlobalStyle = createGlobalStyle`
     font-family: Roboto, Helvetica, sans-serif;
   }
 
+  input {
+    border-radius: 0;
+    -webkit-appearance: none;
+  }
+
+  ::-webkit-input-placeholder {
+    color: rgba(255,255,255,0.2);
+  }
+
   ul {
     list-style: none;
   }
