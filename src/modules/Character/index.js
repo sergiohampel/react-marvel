@@ -1,7 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 import reducer from "./store/reducer";
+import {
+  loadCharacters,
+  loadCharactersSuccess,
+} from "./store/actions-creators";
 
 import * as S from "./styles";
 
@@ -11,17 +16,24 @@ import Card from "./components/Card";
 import { getCharacters } from "./services/api/";
 
 const Character = () => {
-  const [characters, setCharacters] = useState([]);
+  const characters = useSelector((state) => state.characters.characters);
+  const loadingCharacters = useSelector(
+    (state) => state.characters.loadingCharacters
+  );
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    async function loadCharacters() {
+    dispatch(loadCharacters());
+
+    async function load() {
       const data = await getCharacters();
 
-      setCharacters(data.results);
+      dispatch(loadCharactersSuccess(data.results));
     }
 
-    loadCharacters();
-  }, []);
+    load();
+  }, [dispatch]);
 
   const history = useHistory();
 
@@ -38,13 +50,17 @@ const Character = () => {
         <Search />
       </S.Header>
 
-      <S.Characters>
-        {characters.map((character) => (
-          <li key={character.id} onClick={() => openDetails(character.name)}>
-            <Card character={character} />
-          </li>
-        ))}
-      </S.Characters>
+      {loadingCharacters && <S.Loading>Loading...</S.Loading>}
+
+      {!loadingCharacters && (
+        <S.Characters>
+          {characters.map((character) => (
+            <li key={character.id} onClick={() => openDetails(character.name)}>
+              <Card character={character} />
+            </li>
+          ))}
+        </S.Characters>
+      )}
     </>
   );
 };

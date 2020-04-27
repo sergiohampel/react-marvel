@@ -50,3 +50,9 @@ export const Characters = styled.ul`
     margin: 15px 30px 30px;
   }
 `;
+
+export const Loading = styled.p`
+  font-size: 2.6rem;
+  padding: 100px 0;
+  text-align: center;
+`;
