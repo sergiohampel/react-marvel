@@ -7,6 +7,7 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     config.params = {
+      ...config.params,
       apikey: process.env.REACT_APP_API_KEY,
     };
 
