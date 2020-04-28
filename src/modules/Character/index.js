@@ -1,12 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import reducer from "./store/reducer";
+
 import {
   loadCharacters,
   loadCharactersSuccess,
+  updateSearchedTerm,
 } from "./store/actions-creators";
+
+import {
+  selectCharacters,
+  selectLoadingCharacters,
+  selectLoadedCharacters,
+  selectSearchedTerm,
+} from "./store/selectors";
 
 import * as S from "./styles";
 
@@ -16,24 +25,35 @@ import Card from "./components/Card";
 import { getCharacters } from "./services/api/";
 
 const Character = () => {
-  const characters = useSelector((state) => state.characters.characters);
-  const loadingCharacters = useSelector(
-    (state) => state.characters.loadingCharacters
-  );
+  const characters = useSelector(selectCharacters);
+  const loadingCharacters = useSelector(selectLoadingCharacters);
+  const loadedCharacters = useSelector(selectLoadedCharacters);
+  const searchedTerm = useSelector(selectSearchedTerm);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(loadCharacters());
+  const load = useCallback(
+    async (name) => {
+      dispatch(loadCharacters());
 
-    async function load() {
-      const data = await getCharacters();
+      const data = await getCharacters(name);
 
       dispatch(loadCharactersSuccess(data.results));
-    }
+    },
+    [dispatch]
+  );
 
-    load();
-  }, [dispatch]);
+  useEffect(() => {
+    load(searchedTerm);
+  }, [load, searchedTerm]);
+
+  function handleSearch(value) {
+    if (searchedTerm !== value) {
+      dispatch(updateSearchedTerm(value));
+    } else {
+      load(value);
+    }
+  }
 
   const history = useHistory();
 
@@ -47,19 +67,24 @@ const Character = () => {
         <S.Title>
           Marvel <span>Characters</span>
         </S.Title>
-        <Search />
+
+        <Search handleSearch={handleSearch} />
       </S.Header>
 
-      {loadingCharacters && <S.Loading>Loading...</S.Loading>}
-
-      {!loadingCharacters && (
+      {!loadingCharacters && loadedCharacters && (
         <S.Characters>
           {characters.map((character) => (
             <li key={character.id} onClick={() => openDetails(character.name)}>
               <Card character={character} />
             </li>
           ))}
+
+          {!characters.length && <li>Empty result</li>}
         </S.Characters>
+      )}
+
+      {loadingCharacters && !loadedCharacters && (
+        <S.Loading>Loading...</S.Loading>
       )}
     </>
   );
