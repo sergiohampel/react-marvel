@@ -1,14 +1,17 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
-  margin: 20px 10px 0;
+  margin: 0 10px;
+  padding-top: 20px;
 
   @media screen and (min-width: 768px) {
-    margin: 20px 20px 0;
+    margin: 0 20px;
+    padding-top: 20px;
   }
 
   @media screen and (min-width: 960px) {
-    margin: 30px 30px 0;
+    margin: 0 30px;
+    padding-top: 30px;
   }
 `;
 
@@ -52,7 +55,15 @@ export const Characters = styled.ul`
 `;
 
 export const Loading = styled.p`
-  font-size: 2.6rem;
-  padding: 100px 0;
-  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  margin: 10px;
+  padding: 10px;
+
+  @media screen and (min-width: 768px) {
+    margin: 15px 20px;
+  }
+
+  @media screen and (min-width: 960px) {
+    margin: 15px 30px;
+  }
 `;

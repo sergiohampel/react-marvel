@@ -22,7 +22,7 @@ export const Card = styled.div`
     }
 
     h2 {
-      height: 60px;
+      padding-bottom: 30px;
     }
   }
 
@@ -31,11 +31,10 @@ export const Card = styled.div`
     bottom: 0;
     font-family: "RobotoCondensed";
     font-size: 1.8rem;
-    height: 40px;
     left: 0;
     padding: 10px;
     position: absolute;
     right: 0;
-    transition: height 0.3s ease-in-out;
+    transition: padding-bottom 0.3s ease-in-out;
   }
 `;

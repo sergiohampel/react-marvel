@@ -36,6 +36,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background-color: #000;
     color: #fff;
+    font-size: 1.6rem;
   }
 
   body, input, button {
