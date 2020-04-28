@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import * as S from "./styles";
 
@@ -12,4 +12,4 @@ const Card = ({ character }) => {
   );
 };
 
-export default Card;
+export default memo(Card);
