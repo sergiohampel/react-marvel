@@ -1,15 +1,17 @@
 import api from "../../../../services/api/";
 
-const resources = {
-  characters: "v1/public/characters",
-};
-
 export const getCharacters = async (name) => {
-  const response = await api.get(resources.characters, {
+  const response = await api.get("v1/public/characters", {
     params: {
       nameStartsWith: name || "a",
     },
   });
+
+  return response.data.data;
+};
+
+export const getCharacterById = async (id) => {
+  const response = await api.get(`v1/public/characters/${id}`);
 
   return response.data.data;
 };

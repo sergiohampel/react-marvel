@@ -53,7 +53,6 @@ export const Characters = styled.ul`
     margin: 15px 30px 30px;
   }
 `;
-
 export const Loading = styled.p`
   background: rgba(255, 255, 255, 0.05);
   margin: 10px;
@@ -65,5 +64,70 @@ export const Loading = styled.p`
 
   @media screen and (min-width: 960px) {
     margin: 15px 30px;
+  }
+`;
+
+export const Details = styled.section`
+  display: grid;
+  grid-template-columns: 60px 900px;
+  justify-content: center;
+  padding: 50px;
+`;
+
+export const DetailsSection = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 400px;
+`;
+
+export const ButtonIcon = styled.button`
+  background-color: #f0141e;
+  border: 0;
+  cursor: pointer;
+  font-size: 4.5rem;
+  height: 60px;
+  transition: background-color 0.3s;
+  width: 60px;
+
+  &:hover {
+    background-color: #a70e15;
+  }
+`;
+
+export const DetailsImage = styled.img`
+  max-width: 100%;
+`;
+
+export const DetailsContent = styled.section`
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 30px;
+`;
+
+export const DetailsTitle = styled.h1`
+  font-size: 3rem;
+`;
+
+export const DetailsSubTitle = styled.h3`
+  font-size: 2rem;
+  margin-top: 30px;
+`;
+
+export const DetailsDescription = styled.p`
+  margin-top: 30px;
+`;
+
+export const Series = styled.ul`
+  margin-top: 30px;
+`;
+
+export const SeriesItem = styled.li`
+  color: #5e5e5e;
+  font-size: 1.4rem;
+
+  &:not(:first-child) {
+    margin-top: 15px;
   }
 `;

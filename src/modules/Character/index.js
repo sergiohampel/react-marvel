@@ -57,8 +57,8 @@ const Character = () => {
 
   const history = useHistory();
 
-  function openDetails(characterName) {
-    history.push(`/characters/${characterName}`);
+  function openDetails(id) {
+    history.push(`/characters/${id}`);
   }
 
   return (
@@ -74,7 +74,7 @@ const Character = () => {
       {!loadingCharacters && loadedCharacters && (
         <S.Characters>
           {characters.map((character) => (
-            <li key={character.id} onClick={() => openDetails(character.name)}>
+            <li key={character.id} onClick={() => openDetails(character.id)}>
               <Card character={character} />
             </li>
           ))}
