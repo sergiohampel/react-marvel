@@ -14,7 +14,16 @@ import {
 const initialDetails = () => ({
   thumbnail: null,
   series: {
-    items: [],
+    available: 0,
+  },
+  stories: {
+    available: 0,
+  },
+  events: {
+    available: 0,
+  },
+  comics: {
+    available: 0,
   },
 });
 

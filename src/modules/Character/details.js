@@ -14,6 +14,10 @@ import {
   selectCharacterDetails,
   selectCharacterDetailsThumb,
   selectLoadingDetails,
+  selectAmountAvailableSeries,
+  selectAmountAvailableComics,
+  selectAmountAvailableStories,
+  selectAmountAvailableEvents,
 } from "./store/selectors";
 
 import * as S from "./styles";
@@ -26,6 +30,10 @@ const CharacterDetails = () => {
   const details = useSelector(selectCharacterDetails);
   const thumbnail = useSelector(selectCharacterDetailsThumb);
   const loadingDetails = useSelector(selectLoadingDetails);
+  const amountAvailableSeries = useSelector(selectAmountAvailableSeries);
+  const amountAvailableComics = useSelector(selectAmountAvailableComics);
+  const amountAvailableStories = useSelector(selectAmountAvailableStories);
+  const amountAvailableEvents = useSelector(selectAmountAvailableEvents);
 
   const dispatch = useDispatch();
 
@@ -65,6 +73,11 @@ const CharacterDetails = () => {
           <S.DetailsTitle>{details.name}</S.DetailsTitle>
 
           <S.DetailsDescription>{details.description}</S.DetailsDescription>
+
+          <S.DetailsParticipation>
+            Series: {amountAvailableSeries} | Comics: {amountAvailableComics} |
+            Stories: {amountAvailableStories} | Events: {amountAvailableEvents}
+          </S.DetailsParticipation>
         </S.DetailsContent>
 
         {thumbnail && (

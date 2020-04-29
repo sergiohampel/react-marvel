@@ -119,6 +119,11 @@ export const DetailsDescription = styled.p`
   margin-top: 30px;
 `;
 
+export const DetailsParticipation = styled.p`
+  color: #5e5e5e;
+  margin-top: 30px;
+`;
+
 export const Series = styled.ul`
   margin-top: 30px;
 `;
