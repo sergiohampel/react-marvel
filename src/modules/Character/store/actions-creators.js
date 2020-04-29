@@ -7,6 +7,9 @@ import {
   LOAD_CHARACTER_DETAILS_SUCCESS,
   LOAD_CHARACTER_DETAILS_ERROR,
   RESET_DETAILS,
+  LOAD_CHARACTER_SERIES,
+  LOAD_CHARACTER_SERIES_SUCCESS,
+  LOAD_CHARACTER_SERIES_ERROR,
 } from "./action-types";
 
 export const loadCharacters = () => ({
@@ -44,4 +47,18 @@ export const loadCharacterDetailsError = (error) => ({
 
 export const resetDetails = () => ({
   type: RESET_DETAILS,
+});
+
+export const loadCharacterSeries = () => ({
+  type: LOAD_CHARACTER_SERIES,
+});
+
+export const loadCharacterSeriesSuccess = (payload) => ({
+  type: LOAD_CHARACTER_SERIES_SUCCESS,
+  payload,
+});
+
+export const loadCharacterSeriesError = (error) => ({
+  type: LOAD_CHARACTER_SERIES_ERROR,
+  error,
 });

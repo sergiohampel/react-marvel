@@ -4,6 +4,8 @@ import {
   LOAD_CHARACTERS,
   LOAD_CHARACTERS_SUCCESS,
   LOAD_CHARACTERS_ERROR,
+  LOAD_CHARACTER_SERIES,
+  LOAD_CHARACTER_SERIES_SUCCESS,
   UPDATE_SEARCHED_TERM,
   LOAD_CHARACTER_DETAILS,
   LOAD_CHARACTER_DETAILS_SUCCESS,
@@ -29,6 +31,7 @@ const initialDetails = () => ({
 
 const initialState = () => ({
   characters: [],
+  characterSeries: [],
   searchedTerm: "captain",
   loadingCharacters: false,
   loadedCharacters: false,
@@ -36,6 +39,9 @@ const initialState = () => ({
   details: initialDetails(),
   loadingDetails: false,
   detailsError: null,
+  loadingCharacterSeries: false,
+  loadedCharacterSeries: false,
+  hasCharacterSeries: false,
 });
 
 const reduce = createReducer(initialState(), {
@@ -57,6 +63,19 @@ const reduce = createReducer(initialState(), {
     loadingCharacters: false,
     loadedCharacters: false,
     charactersError: error,
+  }),
+
+  [LOAD_CHARACTER_SERIES]: (state) => ({
+    ...state,
+    loadingCharacterSeries: true,
+    loadedCharacterSeries: false,
+  }),
+
+  [LOAD_CHARACTER_SERIES_SUCCESS]: (state, { payload }) => ({
+    ...state,
+    characterSeries: payload,
+    loadingCharacterSeries: false,
+    loadedCharacterSeries: true,
   }),
 
   [UPDATE_SEARCHED_TERM]: (state, { term }) => ({
@@ -85,6 +104,8 @@ const reduce = createReducer(initialState(), {
     ...state,
     details: initialDetails(),
     detailsError: null,
+    characterSeries: [],
+    loadedCharacterSeries: false,
   }),
 });
 

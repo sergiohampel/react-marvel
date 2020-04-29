@@ -7,6 +7,8 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import {
   loadCharacterDetails,
   loadCharacterDetailsSuccess,
+  loadCharacterSeries,
+  loadCharacterSeriesSuccess,
   resetDetails,
 } from "./store/actions-creators";
 
@@ -18,11 +20,16 @@ import {
   selectAmountAvailableComics,
   selectAmountAvailableStories,
   selectAmountAvailableEvents,
+  selectLoadingCharacterSeries,
+  selectCharacterSeries,
+  selectLoadedCharacterSeries,
 } from "./store/selectors";
 
 import * as S from "./styles";
 
-import { getCharacterById } from "./services/api/";
+import SeriesCard from "./components/SeriesCard/";
+
+import { getCharacterById, getCharacterSeries } from "./services/api/";
 
 const CharacterDetails = () => {
   const { id } = useParams();
@@ -34,8 +41,22 @@ const CharacterDetails = () => {
   const amountAvailableComics = useSelector(selectAmountAvailableComics);
   const amountAvailableStories = useSelector(selectAmountAvailableStories);
   const amountAvailableEvents = useSelector(selectAmountAvailableEvents);
+  const loadingCharacterSeries = useSelector(selectLoadingCharacterSeries);
+  const characterSeries = useSelector(selectCharacterSeries);
+  const loadedCharacterSeries = useSelector(selectLoadedCharacterSeries);
 
   const dispatch = useDispatch();
+
+  const loadSeries = useCallback(
+    async (characterId) => {
+      dispatch(loadCharacterSeries());
+
+      const data = await getCharacterSeries(characterId);
+
+      dispatch(loadCharacterSeriesSuccess(data.results));
+    },
+    [dispatch]
+  );
 
   const load = useCallback(
     async (characterId) => {
@@ -44,8 +65,12 @@ const CharacterDetails = () => {
       const data = await getCharacterById(characterId);
 
       dispatch(loadCharacterDetailsSuccess(data.results[0]));
+
+      if (data.results[0].series.available > 0) {
+        loadSeries(id);
+      }
     },
-    [dispatch]
+    [dispatch, id, loadSeries]
   );
 
   useEffect(() => {
@@ -85,6 +110,24 @@ const CharacterDetails = () => {
             src={`${thumbnail.path}.${thumbnail.extension}`}
             alt={thumbnail.name}
           />
+        )}
+
+        {loadingCharacterSeries && (
+          <S.SeriesTitle>Loading series...</S.SeriesTitle>
+        )}
+
+        {loadedCharacterSeries && (
+          <S.SeriesContainer>
+            <S.SeriesTitle>Series</S.SeriesTitle>
+
+            <S.Series>
+              {characterSeries.map((serie) => (
+                <S.SeriesItem key={serie.id}>
+                  <SeriesCard serie={serie} />
+                </S.SeriesItem>
+              ))}
+            </S.Series>
+          </S.SeriesContainer>
         )}
       </S.DetailsSection>
     </S.Details>

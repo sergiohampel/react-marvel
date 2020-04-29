@@ -26,3 +26,15 @@ export const selectAmountAvailableStories = (state) =>
 
 export const selectAmountAvailableEvents = (state) =>
   state.characters.details.events.available;
+
+export const selectLoadingCharacterSeries = (state) =>
+  state.characters.loadingCharacterSeries;
+
+export const selectCharacterSeries = (state) =>
+  state.characters.characterSeries;
+
+export const selectHasCharacterSeries = (state) =>
+  state.characters.details.series.available > 0;
+
+export const selectLoadedCharacterSeries = (state) =>
+  state.characters.loadedCharacterSeries;

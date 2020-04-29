@@ -15,3 +15,9 @@ export const getCharacterById = async (id) => {
 
   return response.data.data;
 };
+
+export const getCharacterSeries = async (id) => {
+  const response = await api.get(`v1/public/characters/${id}/series`);
+
+  return response.data.data;
+};

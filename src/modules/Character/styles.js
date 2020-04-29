@@ -69,14 +69,34 @@ export const Loading = styled.p`
 
 export const Details = styled.section`
   display: grid;
-  grid-template-columns: 60px 900px;
+  grid-template-columns: 1fr;
   justify-content: center;
-  padding: 50px;
+  padding: 10px;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  @media screen and (min-width: 960px) {
+    grid-template-columns: 60px 900px;
+  }
 `;
 
 export const DetailsSection = styled.section`
   display: grid;
-  grid-template-columns: 1fr 400px;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  @media screen and (min-width: 960px) {
+    grid-template-columns: 1fr 400px;
+    grid-template-rows: auto 1fr;
+  }
 `;
 
 export const ButtonIcon = styled.button`
@@ -110,11 +130,6 @@ export const DetailsTitle = styled.h1`
   font-size: 3rem;
 `;
 
-export const DetailsSubTitle = styled.h3`
-  font-size: 2rem;
-  margin-top: 30px;
-`;
-
 export const DetailsDescription = styled.p`
   margin-top: 30px;
 `;
@@ -124,15 +139,43 @@ export const DetailsParticipation = styled.p`
   margin-top: 30px;
 `;
 
+export const SeriesContainer = styled.section`
+  @media screen and (min-width: 768px) {
+    grid-area: 2 / 1 / 3 / 3;
+  }
+`;
+
+export const SeriesTitle = styled.h2`
+  color: #fff;
+  font-size: 2rem;
+  margin-top: 50px;
+`;
+
 export const Series = styled.ul`
-  margin-top: 30px;
+  columns: 100px 1;
+  column-gap: 10px;
+  margin-top: 10px;
+
+  @media screen and (min-width: 768px) {
+    columns: 100px 4;
+    column-gap: 20px;
+    margin-top: 20px;
+  }
+
+  @media screen and (min-width: 960px) {
+    column-gap: 30px;
+    margin-top: 30px;
+  }
 `;
 
 export const SeriesItem = styled.li`
-  color: #5e5e5e;
-  font-size: 1.4rem;
+  margin-bottom: 10px;
 
-  &:not(:first-child) {
-    margin-top: 15px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 20px;
+  }
+
+  @media screen and (min-width: 960px) {
+    margin-bottom: 30px;
   }
 `;
