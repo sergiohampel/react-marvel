@@ -8,13 +8,17 @@ const Routes = () => {
   return (
     <Router>
       <Switch>
-        {modules.map((module) => (
-          <Route
-            {...module.routeProps}
-            key={module.name}
-            exact={module.routeProps.exact}
-          />
-        ))}
+        {modules.map((module) => {
+          return module.hasOwnProperty("routeProps") ? (
+            <Route
+              {...module.routeProps}
+              key={module.name}
+              exact={module.routeProps.exact}
+            />
+          ) : (
+            false
+          );
+        })}
         <Route path="*">
           <NotFound />
         </Route>
