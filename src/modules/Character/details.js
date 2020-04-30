@@ -81,13 +81,13 @@ const CharacterDetails = () => {
 
   const history = useHistory();
 
-  function handleClick() {
-    history.goBack();
+  function goToList() {
+    history.push("/");
   }
 
   return (
     <S.Details>
-      <S.ButtonIcon onClick={handleClick}>
+      <S.ButtonIcon onClick={goToList}>
         <FontAwesomeIcon icon={faAngleLeft} color="#fff" />
       </S.ButtonIcon>
 
