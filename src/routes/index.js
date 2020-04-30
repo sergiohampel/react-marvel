@@ -6,7 +6,7 @@ import NotFound from "./NotFound/";
 
 const Routes = () => {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Switch>
         {modules.map((module) => {
           return module.hasOwnProperty("routeProps") ? (
