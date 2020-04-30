@@ -3,7 +3,7 @@ import api from "../../../../services/api/";
 export const getCharacters = async (name) => {
   const response = await api.get("v1/public/characters", {
     params: {
-      nameStartsWith: name || "a",
+      nameStartsWith: name,
     },
   });
 
