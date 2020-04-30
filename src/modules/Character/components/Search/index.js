@@ -10,8 +10,10 @@ const Search = ({ handleSearch }) => {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (value) {
-      handleSearch(value);
+    const trimmedValue = value.trim();
+
+    if (trimmedValue) {
+      handleSearch(trimmedValue);
     }
   }
 
