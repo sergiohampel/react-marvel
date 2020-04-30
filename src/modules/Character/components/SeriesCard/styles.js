@@ -12,6 +12,7 @@ export const SeriesCardImage = styled.img`
 `;
 
 export const SeriesCardTitle = styled.h1`
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   padding: 20px 20px 0;
+  text-transform: uppercase;
 `;

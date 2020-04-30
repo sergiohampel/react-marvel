@@ -80,6 +80,7 @@ export const Details = styled.section`
 
   @media screen and (min-width: 960px) {
     grid-template-columns: 60px 900px;
+    padding: 30px;
   }
 `;
 
@@ -127,7 +128,8 @@ export const DetailsContent = styled.section`
 `;
 
 export const DetailsTitle = styled.h1`
-  font-size: 3rem;
+  font-size: 2.4rem;
+  text-transform: uppercase;
 `;
 
 export const DetailsDescription = styled.p`
@@ -147,8 +149,9 @@ export const SeriesContainer = styled.section`
 
 export const SeriesTitle = styled.h2`
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-top: 50px;
+  text-transform: uppercase;
 `;
 
 export const Series = styled.ul`
