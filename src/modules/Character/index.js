@@ -1,55 +1,29 @@
-import React, { useEffect, useCallback } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 
 import reducer from "./store/reducer";
 
-import {
-  loadCharacters,
-  loadCharactersSuccess,
-  updateSearchedTerm,
-} from "./store/actions-creators";
-
-import {
-  selectCharacters,
-  selectLoadingCharacters,
-  selectLoadedCharacters,
-  selectSearchedTerm,
-} from "./store/selectors";
+import { useCharacter } from "./hooks/useCharacter/";
+import { useCharacterSelector } from "./hooks/useCharacterSelector/";
 
 import * as S from "./styles";
 
 import Search from "./components/Search";
 import Card from "./components/Card";
 
-import { getCharacters } from "./services/api/";
-
 const Character = () => {
-  const characters = useSelector(selectCharacters);
-  const loadingCharacters = useSelector(selectLoadingCharacters);
-  const loadedCharacters = useSelector(selectLoadedCharacters);
-  const searchedTerm = useSelector(selectSearchedTerm);
+  const {
+    characters,
+    loadingCharacters,
+    loadedCharacters,
+    searchedTerm,
+  } = useCharacterSelector();
 
-  const dispatch = useDispatch();
-
-  const load = useCallback(
-    async (name) => {
-      dispatch(loadCharacters());
-
-      const data = await getCharacters(name);
-
-      dispatch(loadCharactersSuccess(data.results));
-    },
-    [dispatch]
-  );
-
-  useEffect(() => {
-    load(searchedTerm);
-  }, [load, searchedTerm]);
+  const { load, updateTerm } = useCharacter(searchedTerm);
 
   function handleSearch(value) {
     if (searchedTerm !== value) {
-      dispatch(updateSearchedTerm(value));
+      updateTerm(value);
     } else {
       load(value);
     }
@@ -72,7 +46,7 @@ const Character = () => {
       </S.Header>
 
       {!loadingCharacters && loadedCharacters && (
-        <S.Characters>
+        <S.Characters data-testid="characters-list">
           {characters.map((character) => (
             <li key={character.id} onClick={() => openDetails(character.id)}>
               <Card character={character} />

@@ -24,8 +24,14 @@ const Search = ({ handleSearch }) => {
   return (
     <S.SearchForm onSubmit={handleSubmit}>
       <FontAwesomeIcon icon={faSearch} />
-      <S.Input placeholder="Search" onChange={handleChange} />
-      <S.Button type="submit">Search</S.Button>
+      <S.Input
+        placeholder="Search"
+        onChange={handleChange}
+        data-testid="search-field"
+      />
+      <S.Button type="submit" data-testid="search-button">
+        Search
+      </S.Button>
     </S.SearchForm>
   );
 };
